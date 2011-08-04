@@ -12,8 +12,8 @@ usage() {
 	echo "
 Available parameters:
 
-[-f -file] SWF file to embed (only parameter required).
-[-c -color] Content color (don't use '#' or '0x', just numbers).
+[-f -file] SWF file to embed (only required parameter).
+[-c -color] Content color (don't use '#' or '0x', just the hexadecimal code).
 [-t -title] Page title (use quotes).
 [-w -width] Content width ('100%' by default).
 [-h -height] Content height ('100%' by default).
