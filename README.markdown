@@ -1,4 +1,4 @@
-[license]: http://github.com/rafaelrinaldi/swf-to-html/blob/master/license.txt
+[license]: https://github.com/rafaelrinaldi/swf-to-html/raw/master/license.txt
 [swfobject]: http://code.google.com/p/swfobject
 
 # swf-to-html
