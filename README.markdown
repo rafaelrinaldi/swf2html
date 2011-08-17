@@ -11,6 +11,7 @@ Generate a HTML wrapper for your SWF file.
 - `-t` or `-title` - Page title (use quotes).
 - `-w` or `-width` - Content width ('100%' by default).
 - `-h` or `-height` - Content height ('100%' by default).
+- `-ac` - Align center option. ('false' by default).
 - `-v` or `-version` - Flash player version ('10.0.0' by default).
 - `-sov` - [SWFObject][swfobject] version ('2.2' by default).
 - `--help` - Script usage.
