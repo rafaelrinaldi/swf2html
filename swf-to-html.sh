@@ -17,6 +17,7 @@ Available parameters:
 [-t -title] Page title (use quotes).
 [-w -width] Content width ('100%' by default).
 [-h -height] Content height ('100%' by default).
+[-ac] Align center option. ('false' by default).
 [-v -version] Flash player version ('10.0.0' by default).
 [-sov] SWFObject version ('2.2' by default).
 [--help] Script usage.
@@ -45,6 +46,7 @@ c="FFFFFF"
 t=""
 w="100%"
 h="100%"
+ac="false"
 v="10.0.0"
 sov="2.2"
 
@@ -60,6 +62,7 @@ for argument in $options
 			-t|-title) t=${arguments[index]} ;;
 			-w|-width) w=${arguments[index]} ;;
 			-h|-height) h=${arguments[index]} ;;
+			-ac) ac=${arguments[index]} ;;
 			-v|-version) v=${arguments[index]} ;;
 			-sov) sov=${arguments[index]} ;;
 			--help) usage ;;
@@ -87,7 +90,30 @@ path="${f%/*}"
 # Getting file name
 f=`basename $f`
 
+# If "-ac" parameter was set.
+case $ac in
+	
+	t|true|y|yes)
+	
+		# Disable align if width or height has the default value of "100%".
+		if [ $w == "100%" -o $h == "100%" ]; then
+			trace "To align you must set the dimensions of your SWF (width and height)!"
+			exit;
+		fi
+		
+		half_width=`expr $w / 2`
+		half_height=`expr $h / 2`
+
+		# Creating CSS parameters.
+		# TODO: Find a way to add new line before each CSS parameter. Inline parameters are just ugly.
+		m="position: absolute;"
+		m+="left: 50%;"
+		m+="top: 50%;"
+		m+="margin: -$half_height 0 0 -$half_width;"
+	;;
+esac
+
 # Doing "the thing"
-sed -e "s/{file}/$f/g" -e "s/{color}/$c/g" -e "s/{title}/$t/g" -e "s/{width}/$w/g" -e "s/{height}/$h/g" -e "s/{version}/$v/g" -e "s/{sov}/$sov/g" < $template > "$path/$html"
+sed -e "s/{file}/$f/g" -e "s/{color}/$c/g" -e "s/{title}/$t/g" -e "s/{width}/$w/g" -e "s/{height}/$h/g" -e "s/{margin}/$m/g" -e "s/{version}/$v/g" -e "s/{sov}/$sov/g" < $template > "$path/$html"
 
 trace "File successfully created at '$path/$html'!"
