@@ -1,6 +1,6 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!doctype html>
 
-<html> 
+<html lang="en"> 
 
 	<head> 
 		
@@ -11,20 +11,19 @@
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/{sov}/swfobject.js"></script> 
 		<script type="text/javascript"> 
 			
-			var params, attributes, flashvars;
+			var params =
+			{
+				play: "false",
+				loop: "false",
+				menu: "false",
+				salign: "tl",
+				allowfullscreen: "true",
+				allowscriptaccess: "always",
+				wmode: "direct",
+				bgcolor: "#{color}"
+			},	
 			
-			params = {};
-			params.play = "false";
-			params.loop = "false";
-			params.menu = "false";
-			params.salign = "tl";
-			params.allowfullscreen = "true";
-			params.allowscriptaccess = "always";
-			params.wmode = "direct";
-			params.bgcolor = "#{color}";
-			
-			attributes = {};
-			
+			attributes = {},
 			flashvars = {};
 			
 			swfobject.embedSWF("{file}", "content", "{width}", "{height}", "{version}", "", flashvars, params, attributes);
@@ -35,14 +34,14 @@
 		
 			body, html
 			{
-				margin: 0;
+				margin: 0px;
 				background-color: #{color};
 			}
 			
 			#content
 			{
-				width: {width};
-				height: {height};
+				width: {width}px;
+				height: {height}px;
 				{margin}
 			}
 			
