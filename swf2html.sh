@@ -1,18 +1,17 @@
 #!/bin/bash
 
 #
-# Generate a HTML wrapper for your SWF file.
+# Generate a HTML wrapper for your .swf file.
 #
 # author: Rafael Rinaldi (rafaelrinaldi.com)
 # since: Aug 3, 2011
-# license: WTFPL
+#
 
-# Usage
 usage() {
 	echo "
 Available parameters:
 
-[-f -file] SWF file to embed (only required parameter).
+[-f -file] .swf file to embed (only required parameter).
 [-c -color] Content color (don't use '#' or '0x', just the hexadecimal code).
 [-t -title] Page title (use quotes).
 [-w -width] Content width ('100%' by default).
@@ -24,23 +23,18 @@ Available parameters:
 "
 }
 
-# Basic logging method
+# Basic logging method.
 trace() {
 	echo "
 [$0] $1
 "
 }
 
-# Available options
 options=$@
-
-# Options converted to array
 arguments=($options)
-
-# Loop index
 index=0
 
-# Variables
+# Default values.
 f=""
 c="FFFFFF"
 t=""
@@ -52,10 +46,9 @@ sov="2.2"
 
 for argument in $options
 	do
-		# Incrementing loop index
 		index=`expr $index + 1`
 		
-		# Getting parameters
+		# Parsing parameters.
 		case $argument in
 			-f|-file) f=${arguments[index]} ;;
 			-c|-color) c=${arguments[index]} ;;
@@ -69,7 +62,7 @@ for argument in $options
 		esac
 	done
 
-# File variables
+# File variables.
 template="template/index.html"
 html="index.html"
 path=""
@@ -80,40 +73,39 @@ if [[ $@ == "" ]]; then
 fi
 
 if [[ $f == "" ]]; then
-	trace "You must specify the SWF file!"
+	trace "You must specify the .swf file!"
 	exit
 fi
 
-# Getting file path
+# Getting file path.
 path="${f%/*}"
 
-# Getting file name
+# Getting file name.
 f=`basename $f`
 
-# If "-ac" parameter was set.
+# If "-ac" parameter was already set.
 case $ac in
 	
 	t|true|y|yes)
 	
 		# Disable align if width or height has the default value of "100%".
 		if [ $w == "100%" -o $h == "100%" ]; then
-			trace "To align you must set the dimensions of your SWF (width and height)!"
+			trace "To align you must set the dimensions of your .swf (width and height)!"
 			exit;
 		fi
 		
 		half_width=`expr $w / 2`
 		half_height=`expr $h / 2`
 
-		# Creating CSS parameters.
-		# TODO: Find a way to add new line before each CSS parameter. Inline parameters are just ugly.
+		# CSS stack.
 		m="position: absolute;"
 		m+="left: 50%;"
 		m+="top: 50%;"
-		m+="margin: -$half_height 0 0 -$half_width;"
+		m+="margin: -${half_height}px 0 0 -${half_width}px;"
 	;;
 esac
 
-# Doing "the thing"
+# Parsing template.
 sed -e "s/{file}/$f/g" -e "s/{color}/$c/g" -e "s/{title}/$t/g" -e "s/{width}/$w/g" -e "s/{height}/$h/g" -e "s/{margin}/$m/g" -e "s/{version}/$v/g" -e "s/{sov}/$sov/g" < $template > "$path/$html"
 
 trace "File successfully created at '$path/$html'!"
