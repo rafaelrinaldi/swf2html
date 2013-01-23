@@ -21,7 +21,7 @@ Generate a HTML wrapper for your `.swf` file.
 
 ## TODO list
 * ~~Find a way to add new line before each CSS parameter. Inline parameters are just ugly~~.
-* Improve template parsing.
+* ~~Improve template parsing~~.
 
 ## License
 [MIT][license].
