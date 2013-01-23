@@ -20,7 +20,7 @@ Generate a HTML wrapper for your `.swf` file.
 - `--help` - Script usage.
 
 ## TODO list
-* <strike>Find a way to add new line before each CSS parameter. Inline parameters are just ugly</strike>.
+* <strike>Find a way to add new line before each CSS parameter. Inline parameters are just ugly.</strike>
 * Improve template parsing.
 
 ## License
