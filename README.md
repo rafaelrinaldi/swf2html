@@ -20,8 +20,8 @@ Generate a HTML wrapper for your `.swf` file.
 	sh swf2html.sh -f my_swf_file.swf
 
 ## TODO list
-* [ ] Find a way to add new line before each CSS parameter. Inline parameters are just ugly.
-* [ ] Improve template parsing.
+- [ ] Find a way to add new line before each CSS parameter. Inline parameters are just ugly.
+- [ ] Improve template parsing.
 
 ## License
 [MIT][license].
