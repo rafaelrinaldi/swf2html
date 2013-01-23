@@ -62,11 +62,6 @@ for argument in $options
 		esac
 	done
 
-# File variables.
-template="template/index.html"
-html="index.html"
-path=""
-
 if [[ $@ == "" ]]; then
 	usage
 	exit
@@ -82,6 +77,12 @@ path="${f%/*}"
 
 # Getting file name.
 f=`basename $f`
+
+# Template file.
+template="template/index.html"
+
+# Exported HTML should have the same name as .swf file.
+html="${f%.*}.html"
 
 # If "-ac" parameter was already set.
 case $ac in
