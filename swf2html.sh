@@ -98,10 +98,7 @@ case $ac in
 		half_height=`expr $h / 2`
 
 		# CSS stack.
-		m="position: absolute;"
-		m+="left: 50%;"
-		m+="top: 50%;"
-		m+="margin: -${half_height}px 0 0 -${half_width}px;"
+		m="position: absolute; left: 50%; top: 50%; margin-left: -${half_width}px; margin-top: -${half_height}px;"
 	;;
 esac
 
